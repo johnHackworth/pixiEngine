@@ -1,0 +1,135 @@
+<html>
+  <head>
+    <style>
+        body {
+            background: #333333;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        canvas {
+            margin: auto;
+        }
+        .attribution {
+            color: #FFFFFF;
+            font-family: verdana;
+            text-align: center;
+            font-size: 10px;
+        }
+        a {
+            color: #FFFFFF;
+
+        }
+        .loading {
+            font-size: 40px;
+            color: #FFFFFF;
+            font-family: verdana;
+            position: absolute;
+            top: 200px;
+            left: calc(50% - 100px);
+            -webkit-animation-name: spin;
+            -webkit-animation-duration: 4000ms;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            -moz-animation-name: spin;
+            -moz-animation-duration: 4000ms;
+            -moz-animation-iteration-count: infinite;
+            -moz-animation-timing-function: linear;
+            -ms-animation-name: spin;
+            -ms-animation-duration: 4000ms;
+            -ms-animation-iteration-count: infinite;
+            -ms-animation-timing-function: linear;
+
+            animation-name: spin;
+            animation-duration: 4000ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+
+        }
+        @-moz-keyframes spin {
+            from { -moz-transform: rotate(0deg); }
+            to { -moz-transform: rotate(360deg); }
+        }
+        @-webkit-keyframes spin {
+            from { -webkit-transform: rotate(0deg); }
+            to { -webkit-transform: rotate(360deg); }
+        }
+        @keyframes spin {
+            from {transform:rotate(0deg);}
+            to {transform:rotate(360deg);}
+        }
+        .warning {
+            padding: 200px 0;
+            font-size: 40px;
+            color: #FFFFFF;
+            font-family: verdana;
+            width: 100%;
+        }
+    </style>
+    <script src="/bower_components/pixi/bin/pixi.dev.js"></script>
+  </head>
+  <body>
+    <script src="/lib/collections.js"></script>
+    <script src="/lib/math.js"></script>
+    <script src="/lib/eventable.js"></script>
+    <script src="/lib/loggable.js"></script>
+    <script src="/lib/extendable.js"></script>
+    <script src="/lib/engine.js"></script>
+    <script src="/lib/keyboard.js"></script>
+    <script src="/lib/viewport.js"></script>
+    <script src="/lib/stage.js"></script>
+    <script src="/lib/mouseCapturer.js"></script>
+    <script src="/lib/particleGenerator.js"></script>
+
+    <script>
+
+    var currentStage = new pixEngine.Stage({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      assets: [
+      ],
+      init: function(stage) {    }
+    });
+    currentStage.engine.running = true;
+    currentStage.init();
+
+    var createRandomExplosion = function(x,y, colors) {
+        var origin = {
+            x: x || Math.randInt(window.innerWidth),
+            y: y || Math.randInt(window.innerHeight)
+        }
+        var colors = colors || [0xFFFFFF, 0xFFFF00, 0x00FF00, 0x0000FF, 0xFF0000, 0xFFCC99, 0xFFFF99, 0xFFCC00, 0x5599CC, 0x99CC55]
+
+         var particle = new pixEngine.ParticleGenerator({
+            origin: origin,
+            colors: colors,
+            stage: currentStage,
+            size: 5,
+            randomSize: 5,
+            opacity: 0.2,
+            randomOpacity: 0.8,
+            amount: 20,
+            randomAmount: 80,
+            gravity: 30,
+            duration: 50,
+            randomDuration: 250,
+            speed: 1,
+            randomSpeed: 5
+        });
+    }
+    var creationLoop = function() {
+        createRandomExplosion();
+        setTimeout(creationLoop, Math.randInt(1000));
+    }
+    creationLoop();
+
+
+    document.body.addEventListener('click', function(ev) {
+        createRandomExplosion(ev.x, ev.y, [0x00FF00, 0xCCFFCC])
+    })
+
+    </script>
+
+  </body>
+</html>

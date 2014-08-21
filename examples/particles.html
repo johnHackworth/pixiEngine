@@ -1,75 +1,24 @@
 <html>
   <head>
     <style>
-        body {
-            background: #333333;
-            text-align: center;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-        canvas {
-            margin: auto;
-        }
-        .attribution {
-            color: #FFFFFF;
-            font-family: verdana;
-            text-align: center;
-            font-size: 10px;
-        }
-        a {
-            color: #FFFFFF;
-
-        }
-        .loading {
-            font-size: 40px;
-            color: #FFFFFF;
-            font-family: verdana;
-            position: absolute;
-            top: 200px;
-            left: calc(50% - 100px);
-            -webkit-animation-name: spin;
-            -webkit-animation-duration: 4000ms;
-            -webkit-animation-iteration-count: infinite;
-            -webkit-animation-timing-function: linear;
-            -moz-animation-name: spin;
-            -moz-animation-duration: 4000ms;
-            -moz-animation-iteration-count: infinite;
-            -moz-animation-timing-function: linear;
-            -ms-animation-name: spin;
-            -ms-animation-duration: 4000ms;
-            -ms-animation-iteration-count: infinite;
-            -ms-animation-timing-function: linear;
-
-            animation-name: spin;
-            animation-duration: 4000ms;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-
-        }
-        @-moz-keyframes spin {
-            from { -moz-transform: rotate(0deg); }
-            to { -moz-transform: rotate(360deg); }
-        }
-        @-webkit-keyframes spin {
-            from { -webkit-transform: rotate(0deg); }
-            to { -webkit-transform: rotate(360deg); }
-        }
-        @keyframes spin {
-            from {transform:rotate(0deg);}
-            to {transform:rotate(360deg);}
-        }
-        .warning {
-            padding: 200px 0;
-            font-size: 40px;
-            color: #FFFFFF;
-            font-family: verdana;
+        header {
+            position: fixed;
             width: 100%;
+            text-align: center;
+            color: #FFFFFF;
+            font-family: helvetica, arial;
+
+        }
+        body {
+            padding: 0;
+            margin: 0;
+
         }
     </style>
     <script src="/bower_components/pixi/bin/pixi.dev.js"></script>
   </head>
   <body>
+    <header>Click to boom!</header>
     <script src="/lib/collections.js"></script>
     <script src="/lib/math.js"></script>
     <script src="/lib/eventable.js"></script>
